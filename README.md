@@ -1,0 +1,2 @@
+# rs-exercise
+rust exercise
