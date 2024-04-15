@@ -72,7 +72,7 @@ mod tests {
             assert_eq!(a, b);
 
             let c = [3; 5];
-            assert_eq!([3,3,3,3,3], c);
+            assert_eq!([3, 3, 3, 3, 3], c);
         }
     }
 
@@ -82,5 +82,34 @@ mod tests {
         let a = [1, 2, 3, 4, 5];
         let idx: usize = "5".parse().expect("must parse");
         print!("{}", a[idx]);
+    }
+
+    #[test]
+    fn test_3_3_statement_and_equation() {
+        {
+            // format
+            assert_eq!("The measurement is: 5h", print_labeled_measurement(5, 'h'));
+        }
+        {
+            // equation
+            let y = {
+                let x = 1;
+                x + 1
+            };
+            assert_eq!(2, y);
+        }
+
+        {
+            let x = plus_one(5);
+            assert_eq!(6, x);
+        }
+    }
+
+    fn plus_one(x: i32) -> i32 {
+        x + 1
+    }
+
+    fn print_labeled_measurement(value: i32, unit_label: char) -> String {
+        format!("The measurement is: {}{}", value, unit_label)
     }
 }
