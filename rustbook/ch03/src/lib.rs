@@ -112,4 +112,61 @@ mod tests {
     fn print_labeled_measurement(value: i32, unit_label: char) -> String {
         format!("The measurement is: {}{}", value, unit_label)
     }
+
+    #[test]
+    fn test_3_4_control_flow() {
+        {
+            // if-else
+            if true {
+                assert!(true);
+            } else {
+                assert!(false);
+            }
+
+            let number = if true { 5 } else { 6 };
+            assert_eq!(5, number);
+        }
+
+        {
+            // loop
+            {
+                let mut count = 0;
+                'label: loop {
+                    let mut remaining = 10;
+                    loop {
+                        if remaining == 9 {
+                            break;
+                        }
+                        if count == 2 {
+                            break 'label;
+                        }
+                        remaining -= 1;
+                    }
+                    assert_eq!(9, remaining);
+
+                    count += 1;
+                }
+                assert_eq!(2, count);
+            }
+
+            {
+                let mut sum = 0;
+                for element in [10, 20, 30] {
+                    sum += element;
+                }
+                assert_eq!(60, sum);
+
+                let mut sum2 = 0;
+                for element in 1..5 {
+                    sum2 += element;
+                }
+                assert_eq!(10, sum2);
+
+                for element in (1..5).rev() {
+                    sum2 -= element;
+                }
+                assert_eq!(0, sum2);
+            }
+        }
+    }
 }
