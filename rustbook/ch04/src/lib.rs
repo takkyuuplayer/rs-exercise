@@ -32,6 +32,19 @@ mod tests {
             makes_copy(x);
             assert_eq!(5, x);
         }
+        {
+            // borrow
+            let s1 = String::from("hello");
+            not_takes_ownership(&s1);
+            assert_eq!("hello", s1);
+        }
+        {
+            // mutable
+            let mut s1 = String::from("hello");
+            greet(&mut s1);
+
+            assert_eq!("hello, world!", s1);
+        }
     }
 
     fn takes_ownership(s: String) {
@@ -40,5 +53,13 @@ mod tests {
 
     fn makes_copy(v: i32) {
         assert_eq!(5, v);
+    }
+
+    fn not_takes_ownership(s: &String) {
+        assert_eq!("hello", *s);
+    }
+
+    fn greet(s: &mut String) {
+        s.push_str(", world!");
     }
 }
