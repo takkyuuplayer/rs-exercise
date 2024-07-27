@@ -32,6 +32,10 @@ mod tests {
             makes_copy(x);
             assert_eq!(5, x);
         }
+    }
+
+    #[test]
+    fn test_4_2() {
         {
             // borrow
             let s1 = String::from("hello");
