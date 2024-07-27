@@ -47,6 +47,27 @@ mod tests {
         }
     }
 
+    #[test]
+    fn test_4_3() {
+        {
+            // slice
+            let s1 = String::from("hello world");
+            let len = s1.len();
+
+            assert_eq!(&s1[..], "hello world");
+            assert_eq!(s1[0..len], s1[..]);
+
+            assert_eq!(first_word(&s1[..]), "hello");
+        }
+        {
+            // let mut s = String::from("hello world");
+            // let word = first_word(&s);
+
+            // s.clear(); // compile error
+            // assert_eq!(word, "hello");
+        }
+    }
+
     fn takes_ownership(s: String) {
         assert_eq!("hello", s);
     }
@@ -61,5 +82,17 @@ mod tests {
 
     fn greet(s: &mut String) {
         s.push_str(", world!");
+    }
+
+    fn first_word(s: &str) -> &str {
+        let bytes = s.as_bytes();
+
+        for (i, &item) in bytes.iter().enumerate() {
+            if item == b' ' {
+                return &s[0..i];
+            }
+        }
+
+        &s[..]
     }
 }
