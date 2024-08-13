@@ -57,6 +57,40 @@ mod tests {
         }
     }
 
+    #[derive(Debug)]
+    struct Rectangle {
+        width: u32,
+        height: u32,
+    }
+
+    #[test]
+    fn test_5_2() {
+        {
+            let rect1 = Rectangle {
+                width: 30,
+                height: 50,
+            };
+            assert_eq!(1500, area(&rect1));
+
+            assert_eq!(
+                "rect1 is Rectangle { width: 30, height: 50 }",
+                format!("rect1 is {:?}", rect1),
+            );
+
+            assert_eq!(
+                "rect1 is Rectangle {
+    width: 30,
+    height: 50,
+}",
+                format!("rect1 is {:#?}", rect1),
+            );
+        }
+    }
+
+    fn area(rectangle: &Rectangle) -> u32 {
+        rectangle.width * rectangle.height
+    }
+
     fn build_user(email: String, username: String) -> User {
         User {
             email,
