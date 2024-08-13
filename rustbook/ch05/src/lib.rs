@@ -87,6 +87,59 @@ mod tests {
         }
     }
 
+    impl Rectangle {
+        fn square(size: u32) -> Rectangle {
+            Rectangle {
+                width: size,
+                height: size,
+            }
+        }
+    }
+
+    #[test]
+    fn test_5_3() {
+        {
+            // method without arguments
+            let rect1 = Rectangle {
+                width: 30,
+                height: 50,
+            };
+            assert_eq!(1500, rect1.area());
+        }
+        {
+            // method with arguments
+            let rect1 = Rectangle {
+                width: 30,
+                height: 50,
+            };
+            let rect2 = Rectangle {
+                width: 10,
+                height: 40,
+            };
+            let rect3 = Rectangle {
+                width: 60,
+                height: 45,
+            };
+            assert_eq!(true, rect1.can_hold(&rect2));
+            assert_eq!(false, rect2.can_hold(&rect3));
+        }
+        {
+            // Associated Functions ( similar to static/module functions )
+            let square = Rectangle::square(3);
+            assert_eq!(3, square.width);
+            assert_eq!(3, square.height);
+        }
+    }
+
+    impl Rectangle {
+        fn area(&self) -> u32 {
+            self.width * self.height
+        }
+        fn can_hold(&self, other: &Rectangle) -> bool {
+            self.width > other.width && self.height > other.height
+        }
+    }
+
     fn area(rectangle: &Rectangle) -> u32 {
         rectangle.width * rectangle.height
     }
