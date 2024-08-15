@@ -35,4 +35,68 @@ mod tests {
             assert_eq!(x.is_none(), false);
         }
     }
+
+    #[derive(Debug, PartialEq, Eq)]
+    enum UsState {
+        Alabama,
+        Alaska,
+    }
+
+    enum Coin {
+        Penny,
+        Nickel,
+        Dime,
+        Quarter(UsState),
+    }
+
+    #[test]
+    fn test_6_2() {
+        {
+            // match
+            let cents = match Coin::Dime {
+                Coin::Penny => {
+                    println!("Lucky penny!");
+                    1
+                }
+                Coin::Nickel => 5,
+                Coin::Dime => 10,
+                Coin::Quarter(_) => 25,
+            };
+            assert_eq!(cents, 10);
+        }
+        {
+            // match with value
+            let cents = match Coin::Quarter(UsState::Alaska) {
+                Coin::Penny => 1,
+                Coin::Nickel => 5,
+                Coin::Dime => 10,
+                Coin::Quarter(state) => {
+                    assert_eq!(state, UsState::Alaska);
+                    25
+                }
+            };
+            assert_eq!(cents, 25);
+        }
+        {
+            // Option
+            fn plus_one(x: Option<i32>) -> Option<i32> {
+                match x {
+                    None => None,
+                    Some(i) => Some(i + 1),
+                }
+            }
+
+            assert_eq!(plus_one(Some(5)), Some(6));
+            assert_eq!(plus_one(None), None);
+        }
+        {
+            //default
+            let cents = match Coin::Dime {
+                Coin::Penny => 1,
+                Coin::Nickel => 5,
+                _ => 9999,
+            };
+            assert_eq!(cents, 9999);
+        }
+    }
 }
