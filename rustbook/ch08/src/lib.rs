@@ -93,4 +93,47 @@ mod tests {
         let s = &hello[0..4];
         println!("{}", s);
     }
+
+    use std::collections::HashMap;
+
+    #[test]
+    fn test_8_3() {
+        {
+            // basic
+            let mut scores = HashMap::new();
+            scores.insert(String::from("Blue"), 10);
+            scores.insert(String::from("Yellow"), 50);
+
+            assert_eq!(scores.get("Blue"), Some(&10));
+            assert_eq!(scores.get("Red"), None);
+        }
+        {
+            // zip
+            let teams = vec![String::from("Blue"), String::from("Yellow")];
+            let initial_scores = vec![10, 50];
+            let scores: HashMap<_, _> = teams.iter().zip(initial_scores.iter()).collect();
+
+            assert_eq!(scores.get(&"Blue".to_string()), Some(&&10));
+            assert_eq!(scores.get(&"Red".to_string()), None);
+        }
+        {
+            // re-insert
+            let mut scores = HashMap::new();
+            scores.insert(String::from("Blue"), 10);
+            scores.insert(String::from("Blue"), 20);
+            assert_eq!(scores.get("Blue"), Some(&20));
+
+            scores.entry(String::from("Red")).or_insert(30);
+            scores.entry(String::from("Red")).or_insert(40);
+            assert_eq!(scores.get("Red"), Some(&30));
+
+            let text = "hello world wonderful world";
+            let mut map = HashMap::new();
+            for word in text.split_whitespace() {
+                let count = map.entry(word).or_insert(0);
+                *count += 1;
+            }
+            assert_eq!(map.get(&"world"), Some(&2));
+        }
+    }
 }
