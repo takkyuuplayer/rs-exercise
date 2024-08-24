@@ -60,4 +60,30 @@ mod tests {
             assert_eq!(meal.toast, super::back_of_house::Toast::Wheat);
         }
     }
+
+    use crate::front_of_house::hosting;
+    use crate::front_of_house::hosting as hosting2;
+    use crate::front_of_house::hosting::*;
+
+    use crate::back_of_house::{Breakfast, Toast};
+
+    #[test]
+    fn test_7_4() {
+        {
+            // use
+            assert_eq!(hosting::add_to_waitlist(), ());
+            assert_eq!(hosting2::add_to_waitlist(), ());
+            assert_eq!(add_to_waitlist(), ());
+        }
+
+        {
+            let mut meal = Breakfast::summer(Toast::Rye);
+
+            assert_eq!(meal.toast, Toast::Rye);
+
+            meal.toast = Toast::Wheat;
+
+            assert_eq!(meal.toast, Toast::Wheat);
+        }
+    }
 }
