@@ -1,7 +1,5 @@
 #[cfg(test)]
 mod tests {
-    use std::path::Iter;
-
     #[test]
     fn test_10_1() {
         {
