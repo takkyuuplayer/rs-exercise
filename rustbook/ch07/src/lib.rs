@@ -1,5 +1,5 @@
-pub mod front_of_house; // src/front_of_house.rs
-pub mod back_of_house; // src/back_of_house.rs
+pub mod back_of_house;
+pub mod front_of_house; // src/front_of_house.rs // src/back_of_house.rs
 
 #[cfg(test)]
 mod tests {
@@ -8,7 +8,10 @@ mod tests {
     fn test_7_3() {
         {
             // absolute path
-            assert_eq!(crate::front_of_house::hosting::hosting::add_to_waitlist(), ());
+            assert_eq!(
+                crate::front_of_house::hosting::hosting::add_to_waitlist(),
+                ()
+            );
 
             // relative path
             assert_eq!(hosting::add_to_waitlist(), ());

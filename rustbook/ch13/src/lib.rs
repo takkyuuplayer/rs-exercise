@@ -5,13 +5,15 @@ mod tests {
         {
             // basic
             struct Cacher<T>
-            where T: Fn(u32) -> u32
+            where
+                T: Fn(u32) -> u32,
             {
                 calculation: T,
                 value: Option<u32>,
             }
             impl<T> Cacher<T>
-            where T: Fn(u32) -> u32
+            where
+                T: Fn(u32) -> u32,
             {
                 fn new(calculation: T) -> Cacher<T> {
                     Cacher {
@@ -26,14 +28,12 @@ mod tests {
                             let v = (self.calculation)(arg);
                             self.value = Some(v);
                             v
-                        },
+                        }
                     }
                 }
             }
 
-            let mut expensive_result = Cacher::new(|num| {
-                num + 1
-            });
+            let mut expensive_result = Cacher::new(|num| num + 1);
 
             assert_eq!(2, expensive_result.value(1));
             assert_eq!(2, expensive_result.value(2));
@@ -55,8 +55,8 @@ mod tests {
     #[test]
     fn test_10_2() {
         {
-            let v1 : Vec<i32> = vec![1, 2, 3];
-            let v2 : Vec<i32> = v1.iter().map(|x| x + 1).collect();
+            let v1: Vec<i32> = vec![1, 2, 3];
+            let v2: Vec<i32> = v1.iter().map(|x| x + 1).collect();
             assert_eq!(v2, vec![2, 3, 4]);
         }
 
@@ -70,15 +70,22 @@ mod tests {
             }
 
             fn shoes_in_my_size(shoes: Vec<Shoe>, shoe_size: u32) -> Vec<Shoe> {
-                shoes.into_iter()
-                    .filter(|s| s.size == shoe_size)
-                    .collect()
+                shoes.into_iter().filter(|s| s.size == shoe_size).collect()
             }
 
             let shoes = vec![
-                Shoe { size: 10, style: String::from("sneaker") },
-                Shoe { size: 13, style: String::from("sandal") },
-                Shoe { size: 10, style: String::from("boot") },
+                Shoe {
+                    size: 10,
+                    style: String::from("sneaker"),
+                },
+                Shoe {
+                    size: 13,
+                    style: String::from("sandal"),
+                },
+                Shoe {
+                    size: 10,
+                    style: String::from("boot"),
+                },
             ];
 
             let in_my_size = shoes_in_my_size(shoes, 10);
@@ -86,8 +93,14 @@ mod tests {
             assert_eq!(
                 in_my_size,
                 vec![
-                    Shoe { size: 10, style: String::from("sneaker") },
-                    Shoe { size: 10, style: String::from("boot") },
+                    Shoe {
+                        size: 10,
+                        style: String::from("sneaker")
+                    },
+                    Shoe {
+                        size: 10,
+                        style: String::from("boot")
+                    },
                 ]
             );
         }
@@ -125,9 +138,10 @@ mod tests {
             }
 
             {
-                let sum: u32 = Counter::new().zip(Counter::new().skip(1))
-                    .map(|(a, b)| a*b)
-                    .filter(|x| x %3 == 0)
+                let sum: u32 = Counter::new()
+                    .zip(Counter::new().skip(1))
+                    .map(|(a, b)| a * b)
+                    .filter(|x| x % 3 == 0)
                     .sum();
 
                 assert_eq!(18, sum);

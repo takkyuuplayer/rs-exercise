@@ -18,9 +18,9 @@ mod tests {
                                 "Tried to create file but there was a problem: {:?}",
                                 e
                             )
-                        },
+                        }
                     }
-                },
+                }
                 Err(err) => {
                     panic!("{:?}", err)
                 }
@@ -37,5 +37,4 @@ mod tests {
         f.read_to_string(&mut s)?;
         Ok(s)
     }
-
 }
