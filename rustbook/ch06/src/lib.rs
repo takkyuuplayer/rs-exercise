@@ -106,7 +106,7 @@ mod tests {
         if let Some(3) = some_u8_value {
             assert!(true);
         } else {
-            assert_eq(some_u8_value, Some(0));
+            assert_eq!(some_u8_value, Some(0));
         }
     }
 }
