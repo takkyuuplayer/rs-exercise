@@ -8,12 +8,14 @@ mod tests {
 
     #[derive(Debug)]
     enum IpAddr {
+        #[allow(dead_code)]
         V4(u8, u8, u8, u8),
+        #[allow(dead_code)]
         V6(String),
     }
 
     #[test]
-    fn test_6_1() {
+    fn test_enum() {
         {
             // basic
             assert_eq!(format!("{:?}", IpAddrKind::V4), "V4");
@@ -31,26 +33,29 @@ mod tests {
         {
             // Option
             let x: Option<u32> = Some(2);
-            assert_eq!(x.is_some(), true);
-            assert_eq!(x.is_none(), false);
+            assert!(x.is_some());
+            // assert!(!x.is_none()); // clipply に怒られる
         }
     }
 
     #[derive(Debug, PartialEq, Eq)]
     enum UsState {
+        #[allow(dead_code)]
         Alabama,
         Alaska,
     }
 
     enum Coin {
+        #[allow(dead_code)]
         Penny,
+        #[allow(dead_code)]
         Nickel,
         Dime,
         Quarter(UsState),
     }
 
     #[test]
-    fn test_6_2() {
+    fn enum_match() {
         {
             // match
             let cents = match Coin::Dime {
@@ -79,6 +84,7 @@ mod tests {
         }
         {
             // Option
+            #[allow(clippy::manual_map)]
             fn plus_one(x: Option<i32>) -> Option<i32> {
                 match x {
                     None => None,
@@ -101,10 +107,10 @@ mod tests {
     }
 
     #[test]
-    fn test_6_3() {
+    fn enum_if_let() {
         let some_u8_value = Some(0u8);
         if let Some(3) = some_u8_value {
-            assert!(true);
+            unreachable!("this should not happen");
         } else {
             assert_eq!(some_u8_value, Some(0));
         }
