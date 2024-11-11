@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod tests {
     #[test]
-    fn test_4_1() {
+    fn ownership() {
         {
             let mut s = String::from("hello"); // use heap
             s.push_str(", world!");
@@ -35,7 +35,7 @@ mod tests {
     }
 
     #[test]
-    fn test_4_2() {
+    fn borrowing_and_mutable_reference() {
         {
             // borrow
             let s1 = String::from("hello");
@@ -52,7 +52,7 @@ mod tests {
     }
 
     #[test]
-    fn test_4_3() {
+    fn slice() {
         {
             // slice
             let s1 = String::from("hello world");
@@ -97,6 +97,6 @@ mod tests {
             }
         }
 
-        &s[..]
+        s // &s[..] は clippy に怒られる
     }
 }
