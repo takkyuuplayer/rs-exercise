@@ -6,11 +6,13 @@ mod tests {
         sign_in_count: u64,
         active: bool,
     }
+    #[allow(dead_code)]
     struct Color(i32, i32, i32);
+    #[allow(dead_code)]
     struct Point(i32, i32, i32);
 
     #[test]
-    fn test_5_1() {
+    fn test_struct() {
         {
             // basic
             let mut user1 = User {
@@ -64,7 +66,7 @@ mod tests {
     }
 
     #[test]
-    fn test_5_2() {
+    fn struct_debug_format() {
         {
             let rect1 = Rectangle {
                 width: 30,
@@ -97,7 +99,7 @@ mod tests {
     }
 
     #[test]
-    fn test_5_3() {
+    fn struct_method() {
         {
             // method without arguments
             let rect1 = Rectangle {
@@ -120,8 +122,8 @@ mod tests {
                 width: 60,
                 height: 45,
             };
-            assert_eq!(true, rect1.can_hold(&rect2));
-            assert_eq!(false, rect2.can_hold(&rect3));
+            assert!(rect1.can_hold(&rect2));
+            assert!(!rect2.can_hold(&rect3));
         }
         {
             // Associated Functions ( similar to static/module functions )
