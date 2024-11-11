@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 const MAX_POINTS: u32 = 100_000;
 
 #[cfg(test)]
@@ -5,7 +6,12 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_3_1() {
+    fn constant() {
+        assert_eq!(100000, MAX_POINTS);
+    }
+
+    #[test]
+    fn variables_and_mutability() {
         let x = 5;
 
         assert_eq!(100_000, MAX_POINTS);
@@ -25,7 +31,7 @@ mod tests {
     }
 
     #[test]
-    fn test_3_2() {
+    fn data_types() {
         {
             let guess: u32 = "42".parse().expect("Not a number!");
             assert_eq!(42, guess);
@@ -78,14 +84,14 @@ mod tests {
 
     #[test]
     #[should_panic]
-    fn test_3_2_out_of_array() {
+    fn out_of_array() {
         let a = [1, 2, 3, 4, 5];
         let idx: usize = "5".parse().expect("must parse");
         print!("{}", a[idx]);
     }
 
     #[test]
-    fn test_3_3_statement_and_equation() {
+    fn statement_and_equation() {
         {
             // format
             assert_eq!("The measurement is: 5h", print_labeled_measurement(5, 'h'));
@@ -114,8 +120,9 @@ mod tests {
     }
 
     #[test]
-    fn test_3_4_control_flow() {
+    fn control_flow() {
         {
+            #[allow(clippy::assertions_on_constants)]
             // if-else
             if true {
                 assert!(true);
