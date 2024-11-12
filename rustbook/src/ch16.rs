@@ -5,7 +5,7 @@ mod tests {
     use std::time::Duration;
 
     #[test]
-    fn test_16_1() {
+    fn test_16_1_thread() {
         {
             let handle = thread::spawn(|| {
                 for i in 1..10 {
@@ -27,7 +27,7 @@ mod tests {
     }
 
     #[test]
-    fn test_16_2() {
+    fn test_16_2_channel() {
         {
             let (tx, rx) = mpsc::channel();
 
