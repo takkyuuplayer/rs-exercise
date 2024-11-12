@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod tests {
     #[test]
-    fn test_8_1() {
+    fn test_8_1_vector() {
         let mut v: Vec<i32> = Vec::new();
         v.push(1);
         v.push(2);
@@ -12,7 +12,9 @@ mod tests {
         {
             // access
             assert_eq!(v[0], 1);
-            assert_eq!(v.get(0), Some(&v[0]));
+            #[allow(clippy::get_first)]
+            let first = v.get(0);
+            assert_eq!(first, Some(&v[0]));
             assert_eq!(v.get(100), None);
         }
 
@@ -38,6 +40,8 @@ mod tests {
             Text(String),
         }
 
+
+        #[allow(clippy::useless_vec)]
         let row = vec![
             SpreadsheetCell::Int(3),
             SpreadsheetCell::Text(String::from("blue")),
@@ -49,12 +53,14 @@ mod tests {
     #[test]
     #[should_panic]
     fn test_8_1_out_of_lange() {
+        #[allow(clippy::useless_vec)]
         let v2 = vec![1, 2];
+        #[allow(clippy::unnecessary_operation)]
         v2[100];
     }
 
     #[test]
-    fn test_8_2() {
+    fn test_8_2_string() {
         {
             let mut s = String::new();
             s.push_str("hello");
@@ -97,7 +103,9 @@ mod tests {
     use std::collections::HashMap;
 
     #[test]
-    fn test_8_3() {
+    fn test_8_3_hashmap() {
+        #[allow(clippy::unnecessary_to_owned)]
+
         {
             // basic
             let mut scores = HashMap::new();
@@ -109,12 +117,18 @@ mod tests {
         }
         {
             // zip
+            #[allow(clippy::useless_vec)]
             let teams = vec![String::from("Blue"), String::from("Yellow")];
+            #[allow(clippy::useless_vec)]
             let initial_scores = vec![10, 50];
             let scores: HashMap<_, _> = teams.iter().zip(initial_scores.iter()).collect();
 
-            assert_eq!(scores.get(&"Blue".to_string()), Some(&&10));
-            assert_eq!(scores.get(&"Red".to_string()), None);
+            #[allow(clippy::unnecessary_to_owned)]
+            let val = scores.get(&"Blue".to_string());
+            assert_eq!(Some(&&10), val);
+            #[allow(clippy::unnecessary_to_owned)]
+            let val = scores.get(&"Red".to_string());
+            assert_eq!(None, val);
         }
         {
             // re-insert
