@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod tests {
     #[test]
-    fn test_10_1() {
+    fn test_13_1_closure() {
         {
             // basic
             struct Cacher<T>
@@ -53,7 +53,7 @@ mod tests {
     }
 
     #[test]
-    fn test_10_2() {
+    fn test_13_2_iterator() {
         {
             let v1: Vec<i32> = vec![1, 2, 3];
             let v2: Vec<i32> = v1.iter().map(|x| x + 1).collect();
