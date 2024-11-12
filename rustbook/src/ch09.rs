@@ -1,12 +1,14 @@
 #[cfg(test)]
 mod tests {
     use std::fs::File;
-    use std::io::{self, ErrorKind, Read, Write};
+    use std::io::{self, ErrorKind, Read};
 
     #[test]
-    fn test_9_2() {
+    fn test_9_2_result() {
         {
             let f = File::open("hello.txt");
+            #[allow(unused_variables)]
+            #[allow(unused_mut)]
             let mut f = match f {
                 Ok(file) => file,
                 Err(ref err) if err.kind() == ErrorKind::NotFound => {
