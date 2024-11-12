@@ -1,7 +1,10 @@
 #[cfg(test)]
 mod tests {
+    #[allow(dead_code)]
+    #[allow(clippy::useless_vec)]
+
     #[test]
-    fn test_10_2() {
+    fn test_10_2_trait() {
         pub trait Summary {
             fn summarize_author(&self) -> String;
 
@@ -149,7 +152,7 @@ mod tests {
 
 
     #[test]
-    fn test_10_3() {
+    fn test_10_3_lifetime() {
         {
             fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
                 if x.len() > y.len() {
