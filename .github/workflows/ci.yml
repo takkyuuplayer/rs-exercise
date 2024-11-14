@@ -1,0 +1,31 @@
+name: CI
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust toolchain
+        run: |
+          rustup update --no-self-update
+          rustup component add clippy rustfmt
+      - run: make lint
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Swatinem/rust-cache@v2
+      - name: Install Rust toolchain
+        run: |
+          rustup update --no-self-update
+      - run: make test
