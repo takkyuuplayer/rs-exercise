@@ -5,6 +5,7 @@ mod ch06;
 mod ch08;
 mod ch09;
 mod ch10;
+mod ch11;
 mod ch13;
 
 fn main() {
