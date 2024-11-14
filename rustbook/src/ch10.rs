@@ -2,7 +2,6 @@
 mod tests {
     #[allow(dead_code)]
     #[allow(clippy::useless_vec)]
-
     #[test]
     fn test_10_2_trait() {
         pub trait Summary {
@@ -53,7 +52,10 @@ mod tests {
                 reply: false,
                 retweet: false,
             };
-            assert_eq!("horse_ebooks: of course, as you probably already know, people", tweet.summarize());
+            assert_eq!(
+                "horse_ebooks: of course, as you probably already know, people",
+                tweet.summarize()
+            );
         }
 
         {
@@ -80,7 +82,10 @@ mod tests {
                 reply: false,
                 retweet: false,
             };
-            assert_eq!(notify(&tweet), "Breaking news! horse_ebooks: of course, as you probably already know, people");
+            assert_eq!(
+                notify(&tweet),
+                "Breaking news! horse_ebooks: of course, as you probably already know, people"
+            );
             assert_eq!(notify2(&tweet), notify(&tweet));
             assert_eq!(notify3(&tweet), notify(&tweet));
         }
@@ -137,19 +142,19 @@ mod tests {
             largest
         }
 
-        pub fn notify(item: &impl Summary) -> String{
+        pub fn notify(item: &impl Summary) -> String {
             format!("Breaking news! {}", item.summarize())
         }
         pub fn notify2<T: Summary>(item: &T) -> String {
             format!("Breaking news! {}", item.summarize())
         }
         pub fn notify3<T>(item: &T) -> String
-        where T: Summary
+        where
+            T: Summary,
         {
             format!("Breaking news! {}", item.summarize())
         }
     }
-
 
     #[test]
     fn test_10_3_lifetime() {

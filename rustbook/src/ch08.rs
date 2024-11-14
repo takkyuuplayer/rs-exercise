@@ -40,7 +40,6 @@ mod tests {
             Text(String),
         }
 
-
         #[allow(clippy::useless_vec)]
         let row = vec![
             SpreadsheetCell::Int(3),
@@ -105,7 +104,6 @@ mod tests {
     #[test]
     fn test_8_3_hashmap() {
         #[allow(clippy::unnecessary_to_owned)]
-
         {
             // basic
             let mut scores = HashMap::new();
