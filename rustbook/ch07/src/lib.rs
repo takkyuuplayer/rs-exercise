@@ -1,17 +1,19 @@
+#[allow(dead_code)]
 pub mod back_of_house;
 pub mod front_of_house; // src/front_of_house.rs // src/back_of_house.rs
 
 #[cfg(test)]
+#[allow(clippy::unit_cmp)]
 mod tests {
+    use crate::front_of_house::hosting;
+    use crate::front_of_house::hosting as hosting2;
+    use crate::front_of_house::hosting::*;
 
     #[test]
     fn test_7_3() {
         {
             // absolute path
-            assert_eq!(
-                crate::front_of_house::hosting::hosting::add_to_waitlist(),
-                ()
-            );
+            assert_eq!(crate::front_of_house::hosting::add_to_waitlist(), ());
 
             // relative path
             assert_eq!(hosting::add_to_waitlist(), ());
@@ -27,10 +29,6 @@ mod tests {
             assert_eq!(meal.toast, super::back_of_house::Toast::Wheat);
         }
     }
-
-    use crate::front_of_house::hosting::hosting;
-    use crate::front_of_house::hosting::hosting as hosting2;
-    use crate::front_of_house::hosting::hosting::*;
 
     use crate::back_of_house::{Breakfast, Toast};
 

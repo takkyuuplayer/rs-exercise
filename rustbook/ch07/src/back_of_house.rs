@@ -11,7 +11,7 @@ pub struct Breakfast {
 impl Breakfast {
     pub fn summer(toast: Toast) -> Breakfast {
         Breakfast {
-            toast: toast,
+            toast,
             seasonal_fruit: String::from("peaches"),
         }
     }

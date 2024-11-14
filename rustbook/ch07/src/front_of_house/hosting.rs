@@ -1,4 +1,3 @@
-pub mod hosting {
-    pub fn add_to_waitlist() {}
-    fn seat_at_atable() {}
-}
+pub fn add_to_waitlist() {}
+#[allow(dead_code)]
+fn seat_at_atable() {}
