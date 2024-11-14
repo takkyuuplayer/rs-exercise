@@ -14,4 +14,4 @@ lint:
 
 $(CRATES:%=%/lint):
 	cargo fmt --manifest-path $(@D)/Cargo.toml -- --check
-	#cargo clippy --manifest-path $(@D)/Cargo.toml --all-targets --all-features -- -D warnings
+	cargo clippy --manifest-path $(@D)/Cargo.toml --all-targets --all-features -- -D warnings
