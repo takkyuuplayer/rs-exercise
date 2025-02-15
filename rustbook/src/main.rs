@@ -7,6 +7,7 @@ mod ch09;
 mod ch10;
 mod ch11;
 mod ch13;
+mod ch16;
 
 fn main() {
     println!("Hello, world!");
