@@ -1,0 +1,35 @@
+name: Update Dependencies
+on:
+  push:
+  schedule:
+    - cron: "0 0 1 * *"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust tools
+        run: |
+          rustup update --no-self-update
+          cargo install cargo-edit
+      - name: Upgrade dependencies
+        run: make upgrade
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update dependencies"
+          title: "Update dependencies"
+          branch: "update-dependencies"
+          delete-branch: true
+          reviewers: takkyuuplayer
+          body: |
+            Run
+
+            ```
+            $ git fetch --all
+            $ git checkout update-dependencies
+            $ git reset --hard origin/update-dependencies
+            $ git commit --allow-empty -m "run ci"
+            $ git push
+            ```

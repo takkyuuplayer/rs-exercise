@@ -15,3 +15,9 @@ lint:
 $(CRATES:%=%/lint):
 	cargo fmt --manifest-path $(@D)/Cargo.toml -- --check
 	cargo clippy --manifest-path $(@D)/Cargo.toml --all-targets --all-features -- -D warnings
+
+upgrade:
+	$(MAKE) -j$(NUM_CORES) $(addsuffix /upgrade, $(CRATES))
+
+$(CRATES:%=%/upgrade):
+	cargo upgrade -i allow --manifest-path $(@D)/Cargo.toml
