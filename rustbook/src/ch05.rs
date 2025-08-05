@@ -76,7 +76,7 @@ mod tests {
 
             assert_eq!(
                 "rect1 is Rectangle { width: 30, height: 50 }",
-                format!("rect1 is {:?}", rect1),
+                format!("rect1 is {rect1:#?}"),
             );
 
             assert_eq!(
@@ -84,7 +84,7 @@ mod tests {
     width: 30,
     height: 50,
 }",
-                format!("rect1 is {:#?}", rect1),
+                format!("rect1 is {rect1:#?}"),
             );
         }
     }

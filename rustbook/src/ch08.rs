@@ -77,7 +77,7 @@ mod tests {
         {
             let s1 = String::from("hello, ");
             let s2 = String::from("world!");
-            assert_eq!(format!("{}-{}", s1, s2), "hello, -world!");
+            assert_eq!(format!("{s1}-{s2}"), "hello, -world!");
         }
         {
             let hello = "こんにちは";
@@ -96,7 +96,7 @@ mod tests {
     fn test_8_2_string_slice() {
         let hello = "こんにちは";
         let s = &hello[0..4];
-        println!("{}", s);
+        println!("{s}");
     }
 
     use std::collections::HashMap;
