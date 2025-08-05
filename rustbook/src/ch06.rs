@@ -24,10 +24,10 @@ mod tests {
         {
             // enum with value
             let home = IpAddr::V4(127, 0, 0, 1);
-            assert_eq!(format!("{:?}", home), "V4(127, 0, 0, 1)");
+            assert_eq!(format!("{home:?}"), "V4(127, 0, 0, 1)");
 
             let loopback = IpAddr::V6(String::from("::1"));
-            assert_eq!(format!("{:?}", loopback), stringify!(V6("::1")));
+            assert_eq!(format!("{loopback:?}"), stringify!(V6("::1")));
         }
 
         {

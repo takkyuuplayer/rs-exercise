@@ -17,14 +17,13 @@ mod tests {
                         Err(e) => {
                             panic!(
                                 //ファイルを作成しようとしましたが、問題がありました
-                                "Tried to create file but there was a problem: {:?}",
-                                e
+                                "Tried to create file but there was a problem: {e:?}"
                             )
                         }
                     }
                 }
                 Err(err) => {
-                    panic!("{:?}", err)
+                    panic!("{err:?}")
                 }
             };
         }

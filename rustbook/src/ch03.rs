@@ -116,7 +116,7 @@ mod tests {
     }
 
     fn print_labeled_measurement(value: i32, unit_label: char) -> String {
-        format!("The measurement is: {}{}", value, unit_label)
+        format!("The measurement is: {value}{unit_label}")
     }
 
     #[test]
