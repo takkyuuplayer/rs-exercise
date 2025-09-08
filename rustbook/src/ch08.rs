@@ -54,7 +54,7 @@ mod tests {
     fn test_8_1_out_of_lange() {
         #[allow(clippy::useless_vec)]
         let v2 = vec![1, 2];
-        #[allow(clippy::unnecessary_operation)]
+        #[allow(clippy::no_effect)]
         v2[100];
     }
 
